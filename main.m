@@ -7,5 +7,8 @@ binaryTarget = makeBinaryTarget(6,y);
 
 mode = majorityValue(binaryTarget);
 
-totalEmotionEntropy = chooseBestDecisionAttribute(x,attributes,binaryTarget);
-disp(totalEmotionEntropy)
+%getting best attribute (column number for given data x, and for particular
+%emotu
+bestAttribute = chooseBestDecisionAttribute(x,attributes,binaryTarget);
+disp(bestAttribute)
+

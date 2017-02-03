@@ -1,3 +1,2 @@
 
-sample;
-load('noisydata_students.mat','y');
+load('cleandata_students.mat','y');
