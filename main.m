@@ -12,3 +12,8 @@ mode = majorityValue(binaryTarget);
 bestAttribute = chooseBestDecisionAttribute(x,attributes,binaryTarget);
 disp(bestAttribute)
 
+disp('testing ModifyExampleData')
+%examples = randi([0 1], 5,5)
+ui = 1;
+disp(examples)
+[examplesui, binaryTargetsui] =ModifyExampleData(examples,ui,binaryTarget,bestAttribute,attributes);
