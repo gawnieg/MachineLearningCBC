@@ -34,22 +34,20 @@ tree = struct('op',[],'kids',[],'class',0);
 if all(binaryTargets) == 1 %&& all(examples) == 1
    disp('adding leaf node with attribute value')
    disp(1)
-   tree.kids =[];
    tree.class = 1; % but what is attribute?
    return;
 elseif all(binaryTargets)==0 %&& all(examples) ==0
    disp('adding leaf node with attribute value')
    disp(0)
-   tree.kids =[];
    tree.class =0; % but what is attribute?
    return;
+
 
 %base case 2 
 elseif isEmpty(attributes) == 1 % this means it is empty
     majorityValue = majorityValue(binaryTargets);
     %add leaf to tree with bestAttribute as value
     % tree.op = empty?
-    tree.kids =[];
     tree.class = majorityValue; 
     return;
 
@@ -62,22 +60,22 @@ else
     
     %start of for each
     for ui =0:1
-         tree.kids{ui}= struct('op',[],'kids',[],'class',0); %creating new tree 
-        %now call function to split data according to ui and bestAttribute,
-        %coming back in example_ui and binaryTargetsui
-        [examplesui, binaryTargetsui,attributesui] = ModifyExampleData(examples,ui,binaryTargets,bestAttribute,attributes);
-
-        %if examplesui is empty %TF = isempty(A) returns logical 1 (true) if A is an empty array and logical 0 (false) otherwise
-        if isempty(examplesui)== 1
-            tree.class = majorityValue(binaryTargets);
-        else    
-            tree.kids{ui}= decisionTreeLearning(examplesui,attributesui,binaryTargetsui); %unsure of this- what is subtree?
-        end
+     tree.kids{ui}= struct('op',[],'kids',[],'class',0); %creating new tree 
+    %now call function to split data according to ui and bestAttribute,
+    %coming back in example_ui and binaryTargetsui
+    [example_sui, binaryTargetsui,attributesui] = ModifyExampleData(examples,ui,binaryTargets,bestAttribute,attributes);
+   
+    %if examplesui is empty %TF = isempty(A) returns logical 1 (true) if A is an empty array and logical 0 (false) otherwise
+    if isempty(examplesui)== 1
+        tree.class = majorityValue(binaryTargets);
+    else    
+        
     end
     
 
-end
-return;
 
 end
+
+end
+
       

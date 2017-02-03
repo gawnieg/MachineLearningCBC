@@ -14,7 +14,8 @@ disp(bestAttribute)
 
 disp('testing ModifyExampleData')
 %examples = randi([0 1], 5,6)
-ui = 1;
+ui = 0;
 %disp(examples)
 [examplesui, binaryTargetsui,attributesui] =ModifyExampleData(x,ui,binaryTarget,bestAttribute,attributes);
 
+val = testing2(3,3);
