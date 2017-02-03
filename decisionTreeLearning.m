@@ -63,7 +63,7 @@ else
     tree.kids{ui}= struct('op',[],'kids',[],'class',0); 
     %now call function to split data according to ui and bestAttribute,
     %coming back in example_ui and binaryTargetsui
-    [example_sui, binaryTargetsui] = ModifyExampleData(examples,ui,binaryTargets,bestAttribute);
+    [example_sui, binaryTargetsui] = ModifyExampleData(examples,ui,binaryTargets,bestAttribute,attributes);
     
     
     

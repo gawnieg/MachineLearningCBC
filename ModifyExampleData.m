@@ -1,4 +1,4 @@
-function [examplesui, binaryTargetsui] = ModifyExampleData(examples,ui,binaryTargets,bestAttribute,attributes)
+function [examplesui, binaryTargetsui, attributesui] = ModifyExampleData(examples,ui,binaryTargets,bestAttribute,attributes)
     %need to extract the info that is still wanted from the examples passed
     % wanted if examples row with BestAttribute = ui and also the
     % corresponding binaryTarget entry
@@ -52,19 +52,24 @@ function [examplesui, binaryTargetsui] = ModifyExampleData(examples,ui,binaryTar
     binaryTargetsui = binaryTargetsui([1:(j-1)],:); % keep one to j, discard the rest
     
     
+    disp('temp_example_sui is')
+    disp(temp_example_sui)
+    [length_example_sui,width_example_sui]=size(temp_example_sui);
     
     
     %then need to remove attribute row itself   
     temp_1 = temp_example_sui(:,[1:attribute_index]); % get data up to attribute col
-    temp_2 = temp_example_sui(:,[(attribute_index+1):length(temp_example_sui)]); % get data from attribute index +1 to end, to exclude
+    temp_2 = temp_example_sui(:,[(attribute_index+1):width_example_sui]); % get data from attribute index +1 to end, to exclude
     examplesui = horzcat(temp_1, temp_2); % horizontally concatenate the two
-    
     
     disp('examplesui is')
     disp(examplesui)
-    
     disp('binaryTargetsui is')
     disp(binaryTargetsui)
+    
+    %now need to get rid of the attribute
+    attributes(:,attribute_index)=[];
+    attributesui=attributes;
     
     
     

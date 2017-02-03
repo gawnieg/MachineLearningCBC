@@ -13,7 +13,8 @@ bestAttribute = chooseBestDecisionAttribute(x,attributes,binaryTarget);
 disp(bestAttribute)
 
 disp('testing ModifyExampleData')
-%examples = randi([0 1], 5,5)
+%examples = randi([0 1], 5,6)
 ui = 1;
-disp(examples)
-[examplesui, binaryTargetsui] =ModifyExampleData(examples,ui,binaryTarget,bestAttribute,attributes);
+%disp(examples)
+[examplesui, binaryTargetsui,attributesui] =ModifyExampleData(x,ui,binaryTarget,bestAttribute,attributes);
+
