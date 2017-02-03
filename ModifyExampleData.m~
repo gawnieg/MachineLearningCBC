@@ -24,20 +24,16 @@ function [examplesui, binaryTargetsui] = ModifyExampleData(examples,ui,binaryTar
     
     j =1; %index for examplesui
     for i = 1:length(examples)
-        if examples(i,attribute_index)== ui %if the column with bestAttribute is equal to ui, then that row should be kept
+        if examples(:,attribute_index)== ui %if the column with bestAttribute is equal to ui, then that row should be kept
             temp_example_sui(j)= examples(:,attribute_index); % adding to examplesui
             j = j +1;
         end
     end
     
-    %then need to remove attribute row itself   
-    temp_1 = temp_example_sui(:,1:attribute_index); % get data up to attribute col
-    temp_2 = temp_example_sui(:,(attribute_index+1):length(temp_example_sui)); % get data from attribute index +1 to end, to exclude
-    examplesui = horzcat(temp_1, temp_2); % horizontally concatenate the two
-    
-    
-    
-    
+    %then need to remove attribute row itself    sample cuts    % B = A(:,[1 2 5 6 9])
+    % C = A(:[3 4 7 8])
+    temp_1 = temp_example_sui(:,1:attribute_index);
+    temp_2 = temp_example_sui(:,attribute_index:length(temp)
     
     
     
