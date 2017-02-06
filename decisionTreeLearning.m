@@ -30,14 +30,17 @@ target label
 function [tree] = decisionTreeLearning(examples,attributes,binaryTargets)
 tree = struct('op',[],'kids',[],'class',0);
 
+test1 = allVector(binaryTargets, 1);
+test2 = allVector(binaryTargets, 0);
+
 %base case 1 "examples have the same value of binary_targets" 
-if all(binaryTargets) == 1 %&& all(examples) == 1
+if test1 == 1 %&& all(examples) == 1
    disp('adding leaf node with attribute value')
    disp(1)
    tree.kids =[];
    tree.class = 1; % but what is attribute?
    return;
-elseif all(binaryTargets)==0 %&& all(examples) ==0
+elseif test2 == 1 %&& all(examples) ==0
    disp('adding leaf node with attribute value')
    disp(0)
    tree.kids =[];
@@ -45,33 +48,41 @@ elseif all(binaryTargets)==0 %&& all(examples) ==0
    return;
 
 %base case 2 
-elseif isEmpty(attributes) == 1 % this means it is empty
-    majorityValue = majorityValue(binaryTargets);
+elseif isempty(attributes) == 1 % this means it is empty
+    majority_value = majorityValue(binaryTargets);
     %add leaf to tree with bestAttribute as value
     % tree.op = empty?
     tree.kids =[];
-    tree.class = majorityValue; 
+    tree.class = majority_value; 
     return;
 
 %recurvise case
 else 
+%   disp('binaryTarget')
+%   disp(binaryTargets)
+%   disp('examples')
+%    disp(examples)
+ %   disp('attributes')
+ %   disp(attributes)
     bestAttribute = chooseBestDecisionAttribute(examples,attributes, binaryTargets);
+   
     %make new tree altogether??
     tree = struct('op',[],'kids',[],'class',0);
     tree.op=bestAttribute;
     
     %start of for each
     for ui =0:1
-         tree.kids{ui}= struct('op',[],'kids',[],'class',0); %creating new tree 
+         tree.kids{ui+1}= struct('op',[],'kids',[],'class',0); %creating new tree 
         %now call function to split data according to ui and bestAttribute,
         %coming back in example_ui and binaryTargetsui
+        
         [examplesui, binaryTargetsui,attributesui] = ModifyExampleData(examples,ui,binaryTargets,bestAttribute,attributes);
-
+        
         %if examplesui is empty %TF = isempty(A) returns logical 1 (true) if A is an empty array and logical 0 (false) otherwise
         if isempty(examplesui)== 1
             tree.class = majorityValue(binaryTargets);
         else    
-            tree.kids{ui}= decisionTreeLearning(examplesui,attributesui,binaryTargetsui); %unsure of this- what is subtree?
+            tree.kids{ui+1}= decisionTreeLearning(examplesui,attributesui,binaryTargetsui); %unsure of this- what is subtree?
         end
     end
     
