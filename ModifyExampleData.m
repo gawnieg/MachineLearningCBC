@@ -15,13 +15,13 @@ function [examplesui, binaryTargetsui, attributesui] = ModifyExampleData(example
     %loop below
     
     attribute_index =0;
-    disp('best attribute is')
-    disp(bestAttribute)
+  %  disp('best attribute is')
+  %  disp(bestAttribute)
     for i = 1:length(attributes) %attributes will be the same size as examples is wide
        if attributes(i)== bestAttribute
            attribute_index =i;
-           disp('attribute_index is ')
-           disp(attribute_index)
+    %       disp('attribute_index is ')
+   %        disp(attribute_index)
        end
             
     end
@@ -39,11 +39,11 @@ function [examplesui, binaryTargetsui, attributesui] = ModifyExampleData(example
     
     j =1; %index for examplesui
     for i = 1:A
-        disp(length(examples))
-        disp('i')
-        disp(i)
-        disp('attribute index')
-        disp(attribute_index)
+  %      disp(length(examples))
+  %      disp('i')
+  %      disp(i)
+   %     disp('attribute index')
+  %      disp(attribute_index)
         if examples(i,attribute_index)== ui %if the column with bestAttribute is equal to ui, then that row should be kept
             %disp('adding row')
             %disp(i)
@@ -63,16 +63,16 @@ function [examplesui, binaryTargetsui, attributesui] = ModifyExampleData(example
     %disp('temp_example_sui is')
     %disp(temp_example_sui)
     [length_example_sui,width_example_sui]=size(temp_example_sui);
-    disp('width')
-    disp(width_example_sui)
-    disp('attribute')
-    disp(attribute_index)
+   % disp('width')
+  %  disp(width_example_sui)
+   % disp('attribute')
+  %  disp(attribute_index)
     
     %then need to remove attribute row itself   
     temp_1 = temp_example_sui(:,[1:attribute_index-1]); % get data up to attribute col
     temp_2 = temp_example_sui(:,[(attribute_index+1):width_example_sui]); % get data from attribute index +1 to end, to exclude
     examplesui = horzcat(temp_1, temp_2); % horizontally concatenate the two
-    disp(size(examplesui))
+ %   disp(size(examplesui))
     %disp('examplesui is')
     %disp(examplesui)
     %disp('binaryTargetsui is')
@@ -81,8 +81,7 @@ function [examplesui, binaryTargetsui, attributesui] = ModifyExampleData(example
     %now need to get rid of the attribute
     attributes(:,attribute_index)=[];
     attributesui=attributes;
-    disp(attributesui)
-    
+ %   disp(attributesui)
     
     
 end

@@ -3,7 +3,7 @@ attributes = [1:45];
 
 % first argument is emotion, 1 to 6, y is the data vector from clean /
 % noisy data (don't forget to load!!)
-binaryTarget = makeBinaryTarget(6,y);
+binaryTarget = makeBinaryTarget(5,y);
 
 %mode = majorityValue(binaryTarget);
 

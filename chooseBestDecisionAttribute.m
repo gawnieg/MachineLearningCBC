@@ -2,12 +2,12 @@ function [attribute] = chooseBestDecisionAttribute(examples,attributes, binaryTa
 
 %attribute = length(examples);
 [n,p] = counting(binaryTarget);
-disp(n)
-disp(p)
+%disp(n)
+%disp(p)
 totalEmotionEntropy = emotionEntropy(p,n);
 
-disp('total emotion entropy is')
-disp(totalEmotionEntropy)
+%disp('total emotion entropy is')
+%disp(totalEmotionEntropy)
 
 
 infogain = 0;
@@ -17,14 +17,15 @@ for i = 1:length(attributes)
 %    disp(examine_col)
     [p0,p1,n0,n1]=countSubset(examine_col, binaryTarget);
     
+    X = [p0,p1,n0,n1];
     
     remainder_val = remainder(p0,p1,n0,n1,p,n);
-    disp('remainder')
-    disp(remainder_val)
+%    disp('remainder')
+%    disp(remainder_val)
     infogainTemp = totalEmotionEntropy - remainder_val;
 %    disp(remainder_val)
-    disp('info gain temp is ')
-    disp(infogainTemp)
+%    disp('info gain temp is ')
+%    disp(infogainTemp)
     if infogainTemp > infogain 
         infogain = infogainTemp; % finding the best value in the examples data
         attribute = attributes(i); %the column selected from the examples data results in the biggest info gain
@@ -33,6 +34,9 @@ for i = 1:length(attributes)
 end
 
 
+if exist('attribute') == 0
+    attribute = -1;
+end
 
 %calculate total entropy for given emotion
 function [totalEmotionEntropy] = emotionEntropy(p,n)
@@ -47,7 +51,6 @@ function [count0, count1] = counting(binaryTarget)
 
 count0 = 0;
 count1 = 0;
-disp('calling counting')
 for i = 1:length(binaryTarget)
     if binaryTarget(i) == 1
         count1 = count1 + 1;

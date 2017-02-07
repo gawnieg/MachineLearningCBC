@@ -35,14 +35,14 @@ test2 = allVector(binaryTargets, 0);
 
 %base case 1 "examples have the same value of binary_targets" 
 if test1 == 1 %&& all(examples) == 1
-   disp('adding leaf node with attribute value')
-   disp(1)
+ %  disp('adding leaf node with attribute value')
+ %  disp(1)
    tree.kids =[];
    tree.class = 1; % but what is attribute?
    return;
 elseif test2 == 1 %&& all(examples) ==0
-   disp('adding leaf node with attribute value')
-   disp(0)
+%   disp('adding leaf node with attribute value')
+ %  disp(0)
    tree.kids =[];
    tree.class =0; % but what is attribute?
    return;
@@ -61,10 +61,17 @@ else
 %   disp('binaryTarget')
 %   disp(binaryTargets)
 %   disp('examples')
-%    disp(examples)
+ %   disp(examples)
  %   disp('attributes')
  %   disp(attributes)
     bestAttribute = chooseBestDecisionAttribute(examples,attributes, binaryTargets);
+    
+    
+    if bestAttribute == -1 
+        tree.kids =[];
+        tree.class =0; 
+        return;
+    end    
    
     %make new tree altogether??
     tree = struct('op',[],'kids',[],'class',0);
