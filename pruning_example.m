@@ -22,6 +22,6 @@ xlabel('Tree size (number of terminal nodes)')
 ylabel('Cost')
 grid on
 
-plot(nodes2,cost2,'r-x','MarkerSize',8)
+plot(nodes2,cost2,'r-x','MarkerSize',8) %resubstitution
 plot(nodes2(bestLevel2+1),cost2(bestLevel2+1),'ks');
 

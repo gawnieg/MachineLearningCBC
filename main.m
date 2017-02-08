@@ -23,5 +23,16 @@ for i = 1:10
     confMatrixArray(:,:,i) = confMatrix; 
 end
 %tree = decisionTreeLearning(x,attributes,binaryTarget);
+totalConfMatrix = zeros(6,6);
 
+for i = 1:10 
+    totalConfMatrix = totalConfMatrix + confMatrixArray(:,:,i);
+end
+
+recall = calculateRecall(totalConfMatrix);
+precision = calculatePrecision(totalConfMatrix);
+fAlpha = calculateFAlpha(1,recall,precision);
+classRate = calculateClassificationRate(totalConfMatrix);
+
+pruning_example(x,y);
 %DrawDecisionTree(tree)

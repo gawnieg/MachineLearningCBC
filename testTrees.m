@@ -17,6 +17,9 @@ for j = 1:length(x2)
        % fits. 
     end
   end
+  %if predictions(j) == 0
+   %   predictions(j) = randi([1,6],1);
+  %end
   %disp(selection)
   predictions(j) = selectFrom(selection);
 

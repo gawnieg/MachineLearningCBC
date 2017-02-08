@@ -6,10 +6,6 @@ A = length(y);
 %should these be ceil or floor?
 start = (round(counter * (A/kFold))) + 1;
 fin = round((counter+1) * (A/kFold));
-disp('start')
-disp(start)
-disp('end')
-disp(fin)
 
 firstpartx = x([1:start-1],:);
 secondpartx = x([fin+1:A],:);

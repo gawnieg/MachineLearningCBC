@@ -66,8 +66,8 @@ else
  %   disp('attributes')
  %   disp(attributes)
     bestAttribute = chooseBestDecisionAttribute(examples,attributes, binaryTargets);
-    disp('best attribute')
-    disp(bestAttribute)
+ %   disp('best attribute')
+ %   disp(bestAttribute)
     
     if bestAttribute == -1 
         tree.kids =[];
