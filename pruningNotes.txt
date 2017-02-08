@@ -1,0 +1,15 @@
+classregtree constructs unpruned classification tree with two branches
+from each node , test function checks how <good> the tree is using two
+methods,  resubstituation and cross validation.
+
+Then prune tree with each test method 
+
+
+-red line is resubstitution- tree is trained and tested on the same
+ data (if not pruned (at 200 nodes), is perfect because testing and
+ training data is exactly the same - overfitted though!!). will always
+ get worse as pruned more.
+
+-blue line is 10-fold cross-validation - explains why cost is higher -
+ trained and tested on different data. will have optimum tree size.
+
