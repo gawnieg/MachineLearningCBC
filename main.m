@@ -1,27 +1,27 @@
 % attributes are the Muscle Group values from 1 to 45
-attributes = [1:45];
+
 
 % first argument is emotion, 1 to 6, y is the data vector from clean /
 % noisy data (don't forget to load!!)
-binaryTarget = makeBinaryTarget(5,y);
+%DrawDecisionTree(trainedTrees(1))
 
-%mode = majorityValue(binaryTarget);
+%prediction = testRow2(x(13,:),trees(1));
+%disp(prediction)
+confMatrixArray = zeros(6,6,10);
 
-%getting best attribute (column number for given data x, and for particular
-%emotu
-%bestAttribute = chooseBestDecisionAttribute(x,attributes,binaryTarget);
-%disp(bestAttribute)
+for i = 1:10
+    [testFoldX, testFoldY, trainFoldX, trainFoldY] = splitData(i-1,10,x,y);
+    for j = 1:6
+        binaryTarget = makeBinaryTarget(j,trainFoldY); % creating the binarytarget for each emotion 1 to 6
+        attributes = [1:45]; % new attribute array 
+        trainedTrees(j) = decisionTreeLearning(trainFoldX, attributes, binaryTarget);
+        % now function to test already trained tree.
+        
+    end
+    predictions = testTrees(trainedTrees, testFoldX);
+    confMatrix = confusionMatrix(predictions, testFoldY);
+    confMatrixArray(:,:,i) = confMatrix; 
+end
+%tree = decisionTreeLearning(x,attributes,binaryTarget);
 
-%disp('testing ModifyExampleData')
-%examples = randi([0 1], 5,6)
-%ui = 0;
-%disp(examples)
-%[examplesui, binaryTargetsui,attributesui] =ModifyExampleData(x,ui,binaryTarget,bestAttribute,attributes);
-
-
-
-%val = testing2(3,3);
-
-tree = decisionTreeLearning(x,attributes,binaryTarget);
-
-DrawDecisionTree(tree)
+%DrawDecisionTree(tree)

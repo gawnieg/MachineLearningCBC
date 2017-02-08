@@ -32,20 +32,21 @@ tree = struct('op',[],'kids',[],'class',0);
 
 test1 = allVector(binaryTargets, 1);
 test2 = allVector(binaryTargets, 0);
-
+%disp('going through tree')
 %base case 1 "examples have the same value of binary_targets" 
-if test1 == 1 %&& all(examples) == 1
- %  disp('adding leaf node with attribute value')
- %  disp(1)
-   tree.kids =[];
-   tree.class = 1; % but what is attribute?
-   return;
-elseif test2 == 1 %&& all(examples) ==0
-%   disp('adding leaf node with attribute value')
- %  disp(0)
+if test2 == 1 %&& all(examples) ==0
+  % disp('adding leaf node with attribute value')
+  % disp(0)
    tree.kids =[];
    tree.class =0; % but what is attribute?
    return;
+elseif test1 == 1 %&& all(examples) == 1
+  % disp('adding leaf node with attribute value')
+  % disp(1)
+   tree.kids =[];
+   tree.class = 1; % but what is attribute?
+   return;
+
 
 %base case 2 
 elseif isempty(attributes) == 1 % this means it is empty
@@ -65,7 +66,8 @@ else
  %   disp('attributes')
  %   disp(attributes)
     bestAttribute = chooseBestDecisionAttribute(examples,attributes, binaryTargets);
-    
+    disp('best attribute')
+    disp(bestAttribute)
     
     if bestAttribute == -1 
         tree.kids =[];

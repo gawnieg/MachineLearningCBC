@@ -20,8 +20,8 @@ function [examplesui, binaryTargetsui, attributesui] = ModifyExampleData(example
     for i = 1:length(attributes) %attributes will be the same size as examples is wide
        if attributes(i)== bestAttribute
            attribute_index =i;
-    %       disp('attribute_index is ')
-   %        disp(attribute_index)
+           %disp('attribute_index is ')
+           %disp(attribute_index)
        end
             
     end
