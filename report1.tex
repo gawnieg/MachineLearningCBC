@@ -1,0 +1,109 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage[nodayofweek]{datetime}
+\longdate
+
+\usepackage{graphicx}
+\graphicspath{ {/homes/lbe16/machine_learning/CBC/} }
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{\fancyplain{}{M.Sc.\ Group Project Report}}
+\rhead{\fancyplain{}{\today}}
+\cfoot{\fancyplain{}{\thepage}}
+
+
+\title{Assignment 2: Decision Trees Algorithm\\\Large{--- Report ---}}
+\author{Robert Jaworzyn, Aodhgan Gleeson, Ben Fadero, Levi Epstein.\\
+       \{rj616, amg315, bof16, lbe16 \}@doc.ic.ac.uk\\ \\
+       \small{Teaching helper: Jiankang Deng}\\
+       \small{Course: CO395, Imperial College London}
+}
+
+\begin{document}
+\maketitle
+
+\section{Implementation Details}
+
+\subsection{Selecting the best attribute in each node}
+ 
+The ID3 algorithm is a decision tree learning algorithm which selects attributes for nodes based on their information gain. The attribute with the highest information gain at any point is the best candidate for a node.
+
+This algorithm generally works with positive and negative examples for a given target. However, the data in question deals with 6 different targets (emotions, in this case). It is therefore necessary to train 6 separate trees, counting each emotion as a binary target - the decision tree for happiness, for example, would treat happy examples as positive and all other examples as negative. 
+
+To implement this concept in MATLAB, a function called chooseBestDecisionAttribute was created. This function was applied to each emotion. The function selects the attribute with the highest Information Gain in the following way:
+
+\begin{itemize}
+	\item The number of positive and negative examples are counted and the total entropy is calculated using these values
+	\item The function then iterates through each attribute, calculating its information gain. The information gain is the reduction in total entropy caused by partitioning the set of data according to the attribute in question (possibly reference lect notes).  
+	\item The function stores the highest information gain calculated across all attributes, and this attribute is selected as the best attribute for the node.
+\end{itemize}
+\subsection{Performing cross-validation}
+
+In general, cross-validation is performed by splitting the data into k folds, using k-1 folds for training and validation, and the final fold for testing. This process is then repeated k times, using a different fold as the testing fold each time.
+
+For the purposes of this task, the data was divided into 10 roughly evenly-sized folds (9 for training and 1 for testing). Using the training data, a tree was trained for each of the 6 emotions, and the perfomance of each tree was tested by comparing its predictions against the data provided. This was implemented by doing the following:
+
+\begin{itemize}
+	\item A row of attributes from the testing data was passed through the trained trees (1 to 6), thus giving a prediction of which emotion the row of attributes corresponds to. This process was repeated for all rows in the testing data.
+	\item The predictions were then compared against the actual data by creating a confusion matrix (see blah).
+\end{itemize}
+
+\subsection{Computing the average results}
+
+A confusion matrix was created for each of the iterations of the 10-fold cross-validation. The ten confusion matrices were then summed together to give a cumulative confusion matrix, from which the average precision, recall, F1 and classification rate could be calculated using the appropriate formulae.
+
+\subsection{Other system implementation details}
+
+blah blah 
+
+\section{Tree Figures}
+
+\subsection{Emotion 1}
+
+\includegraphics{emotion1tree}
+
+\subsection{Emotion 2}
+
+\includegraphics{emotion2tree}
+
+\subsection{Emotion 3}
+
+\includegraphics{emotion3tree}
+
+\subsection{Emotion 4}
+
+\includegraphics{emotion4tree}
+
+\subsection{Emotion 5}
+
+\includegraphics{emotion5tree}
+
+\subsection{Emotion 6}
+
+\includegraphics{emotion6tree}
+
+\section{Results of the Evaluation}
+
+Including the average confusion matrix, the average classification rate and the average precision, recall rates and F1-measure for each of the 6 classes; for both clean and noisy datasets
+
+\section{Questions}
+
+\subsection{Noisy-Clean Datasets Question}
+
+Is there any difference in the performance when using clean and noisy datasets? Why?
+Discuss the difference in the overall performance and per emotion
+
+\subsection{Ambuiguity Question}
+
+
+
+\subsection{Pruning Question}
+
+How does the pruning example function work? 
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
+
