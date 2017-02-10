@@ -5,6 +5,7 @@
 \longdate
 
 \usepackage{graphicx}
+\usepackage{multirow}
 \graphicspath{ {/homes/lbe16/machine_learning/CBC/} }
 \usepackage{fancyhdr}
 \pagestyle{fancyplain}
@@ -56,7 +57,7 @@ A confusion matrix was created for each of the iterations of the 10-fold cross-v
 
 \subsection{Other system implementation details}
 
-blah blah 
+This is where we should put a bit about using the random evaulation method ... (see section 4.2)
 
 \section{Tree Figures}
 
@@ -88,12 +89,187 @@ blah blah
 
 Including the average confusion matrix, the average classification rate and the average precision, recall rates and F1-measure for each of the 6 classes; for both clean and noisy datasets
 
+\subsection{For the clean data set}
+
+\subsubsection{The average confusion matrix}
+
+\begin{center}
+ \begin{tabular}{| c |p{0.5cm} | c | c | c | c | c | c|} 
+ \hline
+   & \multicolumn{7}{|c|}{Predicted Class} \\
+  \hline
+ \multirow{7}{*}{Actual Class} &  & 1 & 2 & 3 & 4 & 5 & 6 \\  [1ex]
+ \cline{2-8}
+ & 1 & 84 & 18 & 9 & 3 & 14 & 4 \\ 
+ \cline{2-8}
+ & 2 & 19 & 146 & 6 & 9 & 10 & 8 \\
+ \cline{2-8}
+ & 3 & 7 & 4 & 77 & 5 & 12 & 14 \\
+ \cline{2-8}
+ & 4 & 2 & 12 & 5 & 180 & 12 & 5 \\
+ \cline{2-8}
+ & 5 & 23 & 17 & 8 & 7 & 68 & 9 \\ 
+ \cline{2-8}
+ & 6 & 5 & 6 & 13 & 8 & 10 & 165 \\ 
+ \hline
+
+\end{tabular}
+\end{center}
+
+
+The classes 1-6 represent the 6 different emotions (anger, disgust, fear, happiness, sadness and surprise). Looking at the emotion 1 class as an example, the confusion matrix shows that of the 132 actual examples of emotion 1, the system predicted 84 correctly as emotion 1 (anger), 18 as emotion 2 (disgust), 9 as emotion 3 (fear), 3 as emotion 4 (happiness), 14 as emotion 5 (sadness) and 6 as emotion 6 (surprise). This means that there were 84 True Positives (TPs) and 48 False Negatives (FNs) for the emotion 1 class. There were 146, 77, 180 , 68 and 165 TPs for emotion 2,3,4,5,6 classes respectively. 
+
+\subsubsection{Classification Rate}
+
+The average classification rate = 71.71\%. This measures the number of correctly predicted examples divided by the total number of examples.   
+
+\subsubsection{Precision Rate}
+
+The average precision rates for each of the 6 classes (in percentages):
+
+\begin{center}
+ \begin{tabular}{| c | c | c | c | c | c |} 
+ \hline
+ \multicolumn{6}{|c|}{Class} \\
+ \hline
+  1 & 2 & 3 & 4 & 5 & 6 \\  [1ex]
+ \hline
+ 60.00 & 71.92 & 65.25 & 84.91 & 53.97 & 80.49 \\ 
+ \hline
+ \end{tabular}
+\end{center}
+
+\subsubsection{Recall Rate}
+
+The average recall rates for each of the 6 classes (in percentages):
+
+\begin{center}
+ \begin{tabular}{| c | c | c | c | c | c |} 
+ \hline
+ \multicolumn{6}{|c|}{Class} \\
+ \hline
+  1 & 2 & 3 & 4 & 5 & 6 \\  [1ex]
+ \hline
+ 63.64 & 73.74 & 64.71 & 83.33 & 51.52 & 79.71 \\ 
+ \hline
+ \end{tabular}
+\end{center}
+
+\subsubsection{F1-measure}
+
+The F1-measure for each of the 6 classes (in percentages):
+
+\begin{center}
+ \begin{tabular}{| c | c | c | c | c | c |} 
+ \hline
+ \multicolumn{6}{|c|}{Class} \\
+ \hline
+  1 & 2 & 3 & 4 & 5 & 6 \\  [1ex]
+ \hline
+ 61.76 & 72.82 & 64.98 & 84.11 & 52.71 & 80.10 \\ 
+ \hline
+ \end{tabular}
+\end{center}
+
+\subsection{For the noisy data set}
+
+\subsubsection{The average confusion matrix}
+
+\begin{center}
+ \begin{tabular}{| c |p{0.5cm} | c | c | c | c | c | c|} 
+ \hline
+   & \multicolumn{7}{|c|}{Predicted Class} \\
+  \hline
+ \multirow{7}{*}{Actual Class} &  & 1 & 2 & 3 & 4 & 5 & 6 \\  [1ex]
+ \cline{2-8}
+ & 1 & 21 & 14 & 15 & 13 & 15 & 10 \\ 
+ \cline{2-8}
+ & 2 & 11 & 125 & 15 & 21 & 5 & 10  \\
+ \cline{2-8}
+ & 3 & 16 & 20 & 94 & 22 & 14 & 21 \\
+ \cline{2-8}
+ & 4 & 5 & 14 & 15 & 155 & 8 & 12 \\
+ \cline{2-8}
+ & 5 & 19 & 9 & 14 & 6 & 49 & 13\\ 
+ \cline{2-8}
+ & 6 & 13 & 11 & 20 & 11 & 13 & 152 \\ 
+ \hline
+
+\end{tabular}
+\end{center}
+
+\subsubsection{Classification Rate}
+
+The average classification rate = 59.54\%
+
+\subsubsection{Precision Rate}
+
+The average precision rates for each of the 6 classes (in percentages):
+
+\begin{center}
+ \begin{tabular}{| c | c | c | c | c | c |} 
+ \hline
+ \multicolumn{6}{|c|}{Class} \\
+ \hline
+  1 & 2 & 3 & 4 & 5 & 6 \\  [1ex]
+ \hline
+ 24.71 & 64.77 & 54.34 & 67.98 & 47.12 & 69.72 \\ 
+ \hline
+ \end{tabular}
+\end{center}
+
+\subsubsection{Recall Rate}
+
+The average recall rates for each of the 6 classes (in percentages):
+
+\begin{center}
+ \begin{tabular}{| c | c | c | c | c | c |} 
+ \hline
+ \multicolumn{6}{|c|}{Class} \\
+ \hline
+  1 & 2 & 3 & 4 & 5 & 6 \\  [1ex]
+ \hline
+ 23.86 & 66.84 & 52.07 & 74.16 & 44.55 & 69.09 \\ 
+ \hline
+ \end{tabular}
+\end{center}
+
+\subsubsection{F1-measure}
+
+The F1-measure for each of the 6 classes (in percentages):
+
+\begin{center}
+ \begin{tabular}{|| c | c | c | c | c | c||} 
+ \hline
+ \multicolumn{6}{|c|}{Class} \\
+ \hline
+  1 & 2 & 3 & 4 & 5 & 6 \\  [1ex]
+ \hline
+ 24.28 & 65.79 & 52.22 & 70.94 & 45.79 & 69.41 \\ 
+ \hline
+ \end{tabular}
+\end{center}
+
 \section{Questions}
 
 \subsection{Noisy-Clean Datasets Question}
 
-Is there any difference in the performance when using clean and noisy datasets? Why?
-Discuss the difference in the overall performance and per emotion
+There is a difference in performance when training testing using a clean data set in comparison with a noisy data set. When looking at the classification performance measures above (confusion matrix, classification rate, recall and precision rates, F1-measure) for the clean and noisy data sets, we can see that the performance of the classifiers when using the clean data set is superior to the performance when using the noisy data set.
+
+\begin{itemize}
+	\item The average classification rate is 12.17\% higher using clean data set. 
+	\item The precision rates using the clean data set are higher for each of the six classes.
+	\item The recall rates using the clean data set are higher for each of the six classes.
+	\item The F1-measures using the clean data set are higher for each of the six classes.
+\end{itemize}
+
+The clean data is considered to be completely accurate, whereas the noisy data contains some errors and incorrect information. The noisy data set used here could contain some incorrectly detected AUs and some AUs may be missing (reference CBC). 
+
+Since there may be some inccorrectly detected or missing AUs in the data, this would impact the performance of the learning algorithm. If the system is learning from data that contains several errors, it could increase the possibilty of the making incorrect predictions. This could lead to a smaller amount of True Positives and  larger amount of False Negatives classified for each class. This is why the performance measures are worse when using the noisy data data set. 
+
+In essence, less accuracy in the data used for training, will result in less accuracy in classification of examples and this is evident in the results. 
+
+
 
 \subsection{Ambuiguity Question}
 
@@ -102,6 +278,22 @@ Discuss the difference in the overall performance and per emotion
 \subsection{Pruning Question}
 
 How does the pruning example function work? 
+
+When a model being used to classify examples is too complex, it can lead to overfitting. Pruning is a method of removing subtrees and branches from a decision tree that do not aid in classifying examples. This makes the model less complex which helps to deal with the problem of overfitting.
+
+classregtree constructs unpruned classification tree with two branches
+from each node , test function checks how <good> the tree is using two
+methods,  resubstituation and cross validation.
+
+Then prune tree with each test method 
+
+-red line is resubstitution- tree is trained and tested on the same
+ data (if not pruned (at 200 nodes), is perfect because testing and
+ training data is exactly the same - overfitted though!!). will always
+ get worse as pruned more.
+
+-blue line is 10-fold cross-validation - explains why cost is higher -
+ trained and tested on different data. will have optimum tree size.
 
 \bibliographystyle{plain}
 \bibliography{references}
