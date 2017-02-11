@@ -27,17 +27,15 @@ for j = 1:length(x2)
    %   predictions(j) = randi([1,6],1);
   %end
   %disp(selection)
+  predictions(j) = selectFrom(selection); % this line is for 
   
-  %predictions(j) = selectFrom(selection); % this line is for selecting randomly
-  
-  predictions(j) = selectFromNumBased(selection,num_iterations_mat);
+  predictions(j)
 
 end
 disp('selction is')
 disp(selection)
 disp('num_iteration_num')
 disp(num_iterations_mat)
-%disp('predictions')
 %disp(predictions)
 end
 

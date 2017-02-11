@@ -11,10 +11,10 @@ confMatrixArray = zeros(6,6,10);
 
 for i = 1:10
     [testFoldX, testFoldY, trainFoldX, trainFoldY] = splitData(i-1,10,x,y);
-    for j = 1:6
-        binaryTarget = makeBinaryTarget(j,trainFoldY); % creating the binarytarget for each emotion 1 to 6
+    for emotion = 1:6
+        binaryTarget = makeBinaryTarget(emotion,trainFoldY); % creating the binarytarget for each emotion 1 to 6
         attributes = [1:45]; % new attribute array 
-        trainedTrees(j) = decisionTreeLearning(trainFoldX, attributes, binaryTarget);
+        trainedTrees(emotion) = decisionTreeLearning(trainFoldX, attributes, binaryTarget);
         % now function to test already trained tree.
         
     end
@@ -34,5 +34,5 @@ precision = calculatePrecision(totalConfMatrix);
 fAlpha = calculateFAlpha(1,recall,precision);
 classRate = calculateClassificationRate(totalConfMatrix);
 
-pruning_example(x,y);
+%pruning_example(x,y);
 %DrawDecisionTree(tree)
