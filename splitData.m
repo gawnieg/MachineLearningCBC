@@ -1,9 +1,9 @@
+%split the data into 9/10 for training, 1/10 for testing
 function [testFoldX, testFoldY, trainFoldX, trainFoldY] = splitData(counter, kFold, x, y)
 %counter runs from 1 to kFold
 
 A = length(y);
 
-%should these be ceil or floor?
 start = (round(counter * (A/kFold))) + 1;
 fin = round((counter+1) * (A/kFold));
 
