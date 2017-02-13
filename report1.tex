@@ -40,14 +40,14 @@ To implement this concept in MATLAB, a function called chooseBestDecisionAttribu
 	\item The function then iterates through each attribute, calculating its information gain. The information gain is the reduction in total entropy caused by partitioning the set of data according to the attribute in question (possibly reference lect notes).  
 	\item The function stores the highest information gain calculated across all attributes, and this attribute is selected as the best attribute for the node.
 \end{itemize}
-\subsection{Performing cross-validation}
+\subsection{Performing Cross-Validation} \label{cross}
 
 In general, cross-validation is performed by splitting the data into k folds, using k-1 folds for training and validation, and the final fold for testing. This process is then repeated k times, using a different fold as the testing fold each time.
 
 For the purposes of this task, the data was divided into 10 roughly evenly-sized folds (9 for training and 1 for testing). Using the training data, a tree was trained for each of the 6 emotions, and the perfomance of each tree was tested by comparing its predictions against the data provided. This was implemented by doing the following:
 
 \begin{itemize}
-	\item A row of attributes from the testing data was passed through the trained trees (1 to 6), thus giving a prediction of which emotion the row of attributes corresponds to. This process was repeated for all rows in the testing data.
+	\item A row of attributes from the testing data was passed through the trained trees (1 to 6), thus giving a prediction of which emotion the row of attributes corresponds to. This process was repeated for all rows in the testing data. Cases in which a set of attributes could fit multiple emotions will be discussed in section \ref{ambiguity}.
 	\item The predictions were then compared against the actual data by creating a confusion matrix (see blah).
 \end{itemize}
 
@@ -117,7 +117,7 @@ Including the average confusion matrix, the average classification rate and the 
 \end{center}
 
 
-The classes 1-6 represent the 6 different emotions (anger, disgust, fear, happiness, sadness and surprise). Looking at the emotion 1 class as an example, the confusion matrix shows that of the 132 actual examples of emotion 1, the system predicted 84 correctly as emotion 1 (anger), 18 as emotion 2 (disgust), 9 as emotion 3 (fear), 3 as emotion 4 (happiness), 14 as emotion 5 (sadness) and 6 as emotion 6 (surprise). This means that there were 84 True Positives (TPs) and 48 False Negatives (FNs) for the emotion 1 class. There were 146, 77, 180 , 68 and 165 TPs for emotion 2,3,4,5,6 classes respectively. 
+The classes 1-6 represent the 6 different emotions (anger, disgust, fear, happiness, sadness and surprise). Looking at the emotion 1 class as an example, the confusion matrix shows that of the 132 actual examples of emotion 1, the system predicted 84 correctly as emotion 1 (anger), 18 as emotion 2 (disgust), 9 as emotion 3 (fear), 3 as emotion 4 (happiness), 14 as emotion 5 (sadness) and 6 as emotion 6 (surprise). This means that there were 84 true positives (TPs) and 48 false negatives (FNs) for the emotion 1 class. There were 146, 77, 180 , 68 and 165 TPs for emotions 2, 3, 4, 5, 6 classes respectively. 
 
 \subsubsection{Classification Rate}
 
@@ -271,7 +271,7 @@ In essence, less accuracy in the data used for training, will result in less acc
 
 
 
-\subsection{Ambuiguity Question}
+\subsection{Ambiguity Question} \label{ambiguity}
 
 
 
@@ -279,13 +279,9 @@ In essence, less accuracy in the data used for training, will result in less acc
 
 How does the pruning example function work? 
 
-When a model being used to classify examples is too complex, it can lead to overfitting. Pruning is a method of removing subtrees and branches from a decision tree that do not aid in classifying examples. This makes the model less complex which helps to deal with the problem of overfitting.
+If a decision tree is too large, it is at risk of overfitting the data it has been trained on, meaning that it will not necessarily perform well on unseen data. Pruning is a technique that can be used to combat this, by removing subtrees and branches from a tree that do not aid as much in classifying examples, meaning that a smaller decision tree can be used without affecting performance. 
 
-classregtree constructs unpruned classification tree with two branches
-from each node , test function checks how <good> the tree is using two
-methods,  resubstituation and cross validation.
-
-Then prune tree with each test method 
+The \textit{classregtree} function constructs an unpruned decision trees with two branches from each node; then the \textit{test} function checks how well the tree performs. In this case, two methods of testing the tree are used: resubstitution and 10-fold cross-validation. Resubsitution simply involves training and testing a tree on the exact same set of data, whilst 10-fold cross-validation - as is discussed in \ref{cross}, involves splitting the data into training and testing sets.
 
 -red line is resubstitution- tree is trained and tested on the same
  data (if not pruned (at 200 nodes), is perfect because testing and
