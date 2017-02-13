@@ -1,6 +1,8 @@
+%select from multiple emotions based on which took the least number of
+%recursions to calculate
 function [prediction] = selectFromNumBased(selection,num_iterations_mat)
 
-X = randi([1,6],1); % do we still need this?
+X = randi([1,6],1);
 if (allVector(selection,0) == 1)
     prediction = X;
     return;
@@ -15,6 +17,5 @@ for i =1:6
     end
 
 end
-
 
 end

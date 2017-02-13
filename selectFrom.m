@@ -1,3 +1,7 @@
+%if an example can be assigned more than one emotion, randomly select
+%between them. if it is not classified as any emotion, randomly choose one
+%of all 6
+
 function [prediction] = selectFrom(selection)
 
 X = randi([1,6],1);

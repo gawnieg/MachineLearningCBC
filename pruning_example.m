@@ -7,6 +7,12 @@ tree = classregtree(x,y,'method','classification','categorical',1:45,'minparent'
 
 [cost,s,nodes,bestLevel] = test(tree,'cross',x,y);
 [cost2,s2,nodes2,bestLevel2] = test(tree,'resubstitution');
+disp('bestLevel')
+disp(bestLevel)
+disp('bestLevel2')
+disp(bestLevel2)
+
+
 
 prunedTree = prune(tree,'level',bestLevel);
 prunedTree2 = prune(tree,'level',bestLevel2);

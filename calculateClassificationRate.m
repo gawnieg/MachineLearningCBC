@@ -1,3 +1,4 @@
+%returns the total classification rate from a confusion matrix
 function [classificationRate] = calculateClassificationRate(confMatrix)
 
 matrixTotal = sum(confMatrix(:));

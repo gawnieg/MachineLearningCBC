@@ -1,3 +1,4 @@
+%returns number of positive and negative examples in the binary target
 function [count0, count1] = counting(binaryTarget)
 
 count0 = 0;
