@@ -1,4 +1,4 @@
-load('cleandata_students.mat');
+ %load('cleandata_students.mat');
 
 %initialise array of confusion matrices, one for each fold
 confMatrixArray = zeros(6,6,10);
