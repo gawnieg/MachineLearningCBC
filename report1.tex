@@ -273,7 +273,18 @@ In essence, less accuracy in the data used for training, will result in less acc
 
 \subsection{Ambiguity Question} \label{ambiguity}
 
+Three methods: weighted, random, fewest recursions
 
+Weighted Selection:
+	- Last positive example found is the predicted tree (so if looking AUs correspond to emotions 1 and 3, 3 is the prediction). Expect predictions to be skewed towards emotion 6. Same goes for case in which trees are tested from 6 to 1 (but skewed towards 1).
+	
+Random Selection:
+	- When multiple trees give positive results (?!?!), prediction is randomly selected from them. For example, if trees 1, 2 and 5 are found, the prediction is randomly selected as one of them. Results unpredictable, and vary each time test is run.
+	
+Recursion Depth Selection:
+	- Trees are searched recursively (check if attribute is positive example, if not, check next node, until leaf node is found). Further down the tree, attributes give lower information gain, so fewest recursions -> highest info gain at leaf node -> more likely to be accurate. Expect best performance of three methods.
+	
+Majority of error for each method caused by the fact that when no predictions can be made a random emotion is assigned.
 
 \subsection{Pruning Question}
 
